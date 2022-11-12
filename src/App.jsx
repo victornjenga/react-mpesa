@@ -11,7 +11,7 @@ function App() {
 
   const payHandler = (event) => {
     event.preventDefault();
-    Axios.post("http://mpesa.gavnatmoversandcleaners.com/token", {
+    Axios.post("https://gavnatmoversandcleaners.com/token", {
       amount,
       phone,
     })
