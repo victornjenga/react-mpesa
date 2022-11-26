@@ -11,7 +11,7 @@ function App() {
 
   const payHandler = (event) => {
     event.preventDefault();
-    Axios.post("https://gavnatmoversandcleaners.com/token", {
+    Axios.post("https://railwaympesa.up.railway.app/token", {
       amount,
       phone,
     })
