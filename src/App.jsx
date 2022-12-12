@@ -8,18 +8,26 @@ function App() {
   const [amount, setAmount] = useState();
   const [data, setData] = useState();
   const [error, setError] = useState();
+const [ buttonText,setButtonText]=useState("Pay")
+
 
   const payHandler = (event) => {
     event.preventDefault();
+    setButtonText("Processing")
     Axios.post("https://railwaympesa.up.railway.app/token", {
       amount,
       phone,
     })
       .then((res) => {
-        console.log(res);
+        setData(res.data.CustomerMessage);
+        console.log(res)
+      setButtonText("Pay")
+
       })
       .catch((error) => {
         console.log(error);
+      setButtonText("Pay")
+
       });
   };
 
@@ -33,24 +41,25 @@ function App() {
         <input
           onChange={(e) => setAmount(e.target.value)}
           placeholder="Amount"
-          className=" bg-slate-100 text-center rounded-xl"
+          className=" bg-slate-100 py-1 outline-none text-center rounded-xl"
         />
         <input
           onChange={(e) => setPhone(e.target.value)}
           placeholder="Phone"
-          className=" bg-slate-100 text-center rounded-xl"
+          className=" bg-slate-100 py-1 px-2 outline-none text-center rounded-xl"
         />
         <button
           onClick={payHandler}
           className="bg-green-600 text-white px-2 py-1 rounded-2xl"
         >
-          Pay Now
+          {buttonText}
         </button>
       </form>
-      {/* {data?.map((item,index)=>{
-        <p key="index">{item}</p>
-      })} */}
-      {/* <p>{error}</p> */}
+      
+        <p className="mt-4">{data}</p>
+     
+      <p className=" mt-40">Mpesa playground(Stk Push with Nodejs)</p>
+      <p className="">Made with ❤ by Victor</p>
     </div>
   );
 }
